@@ -25,4 +25,7 @@ Route::get('/{user}', [App\Http\Controllers\UserController::class, 'show'])->nam
 Route::get('/{user}/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('edit-profile');
 Route::post('/{id}/edit', [App\Http\Controllers\UserController::class, 'update'])->name('update-profile');
 Route::get('/foundations/{foundation}', [App\Http\Controllers\FoundationController::class, 'show'])->name('foundation-page');
-Route::post('/foundations/{foundation}/join', [App\Http\Controllers\FoundationController::class, 'join'])->name('become-member');
+Route::post('/foundations/{foundation}', [App\Http\Controllers\FoundationController::class, 'update'])->name('edit-foundation');
+Route::get('/foundations/{foundation}/disband', [App\Http\Controllers\FoundationController::class, 'delete'])->name('disband-foundation');
+Route::get('/foundations/{foundation}/join', [App\Http\Controllers\MemberController::class, 'create'])->name('become-member');
+Route::get('/foundations/{foundation}/quit', [App\Http\Controllers\MemberController::class, 'delete'])->name('quit-member');

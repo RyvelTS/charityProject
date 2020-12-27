@@ -43,13 +43,19 @@ class FoundationController extends Controller
       }
     }
   }
-  public function join(Foundation $foundation){
+  public function update(Request $request, $id){
+    Foundation::where('id',$id)->update($request->except(['_token']));
+    return redirect('foundations/'.$id);
+  }
+  public function delete(Foundation $foundation){
     $id = \Auth::id();
     $foundation_data = Foundation::find($foundation->id);
-    $foundation_data->members()->create([
-      'user_id' => $id,
-      'role_id' => 2
-    ]);
-    return redirect('foundations/'.$foundation->id);
+    $owner = $foundation_data->members()->where('role_id',1)->first();
+    
+    if($id==$owner->user_id){
+      $foundation_data->members()->delete();
+      $foundation_data->delete();
+    }
+    return redirect('/');
   }
 }
