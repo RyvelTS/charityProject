@@ -3,22 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\User;
 
 class UserController extends Controller
 {
   public function index()
   {
-    $id = \Auth::id();
-    $user_data= DB::table('users')->where('id', $id)->first();
-
-    return view('client.profile',['user_data'=>$user_data]);
+    $users = User::all();
+    return view('client.profile',['user_data'=>$users]);
   }
   public function show(User $user)
   {
     $id = \Auth::id();
-    $user_data= DB::table('users')->where('id', $user->id)->first();
+    $user_data = User::find($user->id);
     return view('client.profile',['user_data'=>$user_data],['current_user'=> $id] );
   }
   public function edit(User $user)
@@ -32,7 +29,7 @@ class UserController extends Controller
   }
   public function update(Request $request, $id)
   {
-    DB::table('users')->where('id',$id)->update($request->except(['_token']));
+    User::where('id',$id)->update($request->except(['_token']));
     return redirect('/');
   }
 }

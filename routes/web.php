@@ -20,6 +20,8 @@ Route::get('/welcome', function () {
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/foundations/create', [App\Http\Controllers\FoundationController::class, 'create'])->name('create-foundation');
 Route::get('/{user}', [App\Http\Controllers\UserController::class, 'show'])->name('profile');
 Route::get('/{user}/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('edit-profile');
 Route::post('/{id}/edit', [App\Http\Controllers\UserController::class, 'update'])->name('update-profile');
+Route::get('/foundations/{foundation}', [App\Http\Controllers\FoundationController::class, 'show'])->name('foundation-page');

@@ -24,8 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-      $id = \Auth::id();
-      $user_data= DB::table('users')->where('id', $id)->first();
-        return view('home',['user_data'=>$user_data]);
+        return view('home');
     }
 }
