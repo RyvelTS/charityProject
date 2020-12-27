@@ -18,7 +18,7 @@ class CreateFoundationsTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone')->unique();
-            $table->string('country')->unique();
+            $table->string('country');
             $table->string('bank_account_number')->unique();
             $table->timestamps();
         });

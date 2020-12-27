@@ -24,8 +24,8 @@
         <div class="card-header">{{ __('My Foundations') }}</div>
         <div class="card-body">
           <div class="list-group">
-            @foreach ($foundation_list as $foundation)
-            <a href="#" class="list-group-item list-group-item-action">{{ $foundation->name }}</a>
+            @foreach ($owned_foundations as $foundation)
+            <a href="{{ route('foundation-page', $foundation->id ) }}" class="list-group-item list-group-item-action">{{ $foundation->name }}</a>
             @endforeach
             <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#staticBackdrop">{{ __('Create Foundation') }}</button>
           </div>
@@ -35,9 +35,10 @@
         <div class="card-header">{{ __('Joined Foundations') }}</div>
         <div class="card-body">
           <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-            <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-            <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+            @foreach ($joined_foundations as $foundation)
+            <a href="{{ route('foundation-page', $foundation->id ) }}" class="list-group-item list-group-item-action">{{ $foundation->name }}</a>
+            @endforeach
+            <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#exampleModal">{{ __('Join Foundation') }}</button>
           </div>
         </div>
       </div>
@@ -98,6 +99,30 @@
         <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
       </div>
     </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal2 -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{ __('Available Foundations') }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="list-group">
+          @foreach ($available_foundations as $foundation)
+          <a href="{{ route('foundation-page', $foundation->id ) }}" class="list-group-item list-group-item-action">{{ $foundation->name }}</a>
+          @endforeach
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
+      </div>
     </div>
   </div>
 </div>
