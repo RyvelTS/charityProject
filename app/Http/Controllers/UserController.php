@@ -24,7 +24,7 @@ class UserController extends Controller
     if($user->id == $id){
       return view('client.edit',['user_data'=>$user]);
     }else{
-      return redirect('404');
+      return redirect(404);
     }
   }
   public function update(Request $request, $id)

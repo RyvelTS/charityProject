@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Foundation;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class FoundationController extends Controller
 {
+  public function index()
+  {
+    $foundations = Foundation::all();
+
+  }
   public function show(Foundation $foundation)
   {
     return view('foundation.foundation');
@@ -16,6 +20,6 @@ class FoundationController extends Controller
   {
     $foundation = new Foundation;
     $foundation_id = ($foundation->create($request->all()))->id;
-    dd($foundation_id);
+    return redirect('foundations/'.$foundation_id);
   }
 }

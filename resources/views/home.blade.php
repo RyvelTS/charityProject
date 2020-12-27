@@ -24,8 +24,9 @@
         <div class="card-header">{{ __('My Foundations') }}</div>
         <div class="card-body">
           <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-            <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+            @foreach ($foundation_list as $foundation)
+            <a href="#" class="list-group-item list-group-item-action">{{ $foundation->name }}</a>
+            @endforeach
             <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#staticBackdrop">{{ __('Create Foundation') }}</button>
           </div>
         </div>

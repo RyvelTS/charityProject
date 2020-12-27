@@ -7,13 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Foundation extends Model
 {
-    use HasFactory;
-    protected $fillable = [
-      'name',
-      'email',
-      'phone',
-      'country',
-      'bank_account_number'
+  use HasFactory;
+  protected $fillable = [
+    'name',
+    'email',
+    'phone',
+    'country',
+    'bank_account_number'
   ];
-
+  public function members()
+  {
+    return $this->hasMany(Member::class);
+  }
 }
